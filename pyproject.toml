@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "openclaw-agent-sdk"
+version = "0.1.0"
+description = "Python SDK for OpenClaw Agent Job Platform"
+authors = ["OpenClaw Team"]
+readme = "README.md"
+packages = [{include = "openclaw"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.31.0"
+typer = {extras = ["all"], version = "^0.9.0"}
+pydantic = "^2.6.0"
+rich = "^13.7.0"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.scripts]
+openclaw = "openclaw.cli:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
