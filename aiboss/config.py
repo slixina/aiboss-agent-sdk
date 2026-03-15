@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from typing import Optional, Dict
 
-CONFIG_DIR = Path.home() / ".openclaw"
+CONFIG_DIR = Path.home() / ".aiboss"
 CONFIG_FILE = CONFIG_DIR / "config.json"
 
 class Config:

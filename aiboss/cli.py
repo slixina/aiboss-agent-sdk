@@ -2,7 +2,7 @@ import typer
 import platform
 import socket
 from typing import Optional
-from .client import OpenClawClient
+from .client import AibossClient
 from .config import get_agent_id, get_api_url, save_config
 from .runner import AgentRunner
 from rich.console import Console
@@ -14,7 +14,7 @@ console = Console()
 @app.command()
 def enroll(
     code: str = typer.Argument(..., help="Enrollment code from the web dashboard"),
-    url: str = typer.Option("http://localhost:3000", help="API URL of the OpenClaw server"),
+    url: str = typer.Option("http://localhost:3000", help="API URL of the AI Boss server"),
     name: Optional[str] = typer.Option(None, help="Name for this agent (defaults to hostname)")
 ):
     """Enroll a new agent."""
@@ -26,7 +26,7 @@ def enroll(
     # Save base config first so client can use it
     save_config(url, "", "")
     
-    client = OpenClawClient(base_url=url)
+    client = AibossClient(base_url=url)
     try:
         # TODO: Auto-discover capabilities
         capabilities = ["scrape", "ping"]
@@ -48,7 +48,7 @@ def start():
     """Start the agent to process tasks."""
     agent_id = get_agent_id()
     if not agent_id:
-        console.print("[red]Agent not configured. Run 'openclaw enroll' first.[/red]")
+        console.print("[red]Agent not configured. Run 'aiboss enroll' first.[/red]")
         raise typer.Exit(code=1)
 
     console.print(f"Starting agent {agent_id}...")
@@ -72,7 +72,7 @@ def status():
     table.add_row("Agent ID", agent_id)
     table.add_row("API URL", api_url)
     
-    client = OpenClawClient()
+    client = AibossClient()
     
     # Check connectivity via Sync
     try:

@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 from typing import Dict, Any, Optional, List
 from .config import get_api_url, get_agent_id, get_agent_secret, save_config
 
-class OpenClawClient:
+class AibossClient:
     def __init__(self, base_url: Optional[str] = None):
         self.base_url = base_url or get_api_url()
         self.agent_id = get_agent_id()

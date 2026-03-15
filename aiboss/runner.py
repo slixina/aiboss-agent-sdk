@@ -4,7 +4,7 @@ import logging
 import random
 import builtins
 from typing import Dict
-from .client import OpenClawClient
+from .client import AibossClient
 from .executor import Executor
 from .executors.ping import PingExecutor
 from .executors.scrape import ScrapeExecutor
@@ -15,11 +15,11 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
-logger = logging.getLogger("OpenClaw")
+logger = logging.getLogger("Aiboss")
 
 class AgentRunner:
     def __init__(self):
-        self.client = OpenClawClient()
+        self.client = AibossClient()
         self.executors: Dict[str, Executor] = {}
         self.error_count = 0
         
@@ -48,7 +48,7 @@ class AgentRunner:
 
     def run(self):
         if not self.client.agent_id:
-            logger.error("Agent not enrolled. Please run 'openclaw enroll' first.")
+            logger.error("Agent not enrolled. Please run 'aiboss enroll' first.")
             return
 
         logger.info(f"Agent {self.client.agent_id} started. Capabilities: {list(self.executors.keys())}")
