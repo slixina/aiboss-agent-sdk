@@ -29,10 +29,16 @@ class Config:
 
     @property
     def api_url(self) -> str:
-        return self._config.get("api_url", "http://localhost:3000")
+        url = self._config.get("api_url", "http://localhost:3000")
+        if isinstance(url, str):
+            # Sanitize URL: remove backticks and whitespace
+            return url.replace("`", "").strip()
+        return url
 
     @api_url.setter
     def api_url(self, value: str):
+        if isinstance(value, str):
+            value = value.replace("`", "").strip()
         self._config["api_url"] = value
         self.save()
 

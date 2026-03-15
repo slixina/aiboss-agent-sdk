@@ -96,5 +96,59 @@ def status():
     
     console.print(table)
 
+@app.command()
+def check():
+    """Diagnose network connection to AI Boss API."""
+    import time
+    from urllib.parse import urlparse
+    import requests
+    
+    api_url = get_api_url()
+    console.print(f"[bold]Diagnosing connection to:[/bold] {api_url}")
+    
+    # 1. Parse URL
+    parsed = urlparse(api_url)
+    host = parsed.hostname
+    port = parsed.port or (443 if parsed.scheme == 'https' else 80)
+    
+    if not host:
+        console.print("[red]Invalid URL format.[/red]")
+        return
+
+    # 2. DNS Resolution
+    console.print(f"\n[bold]DNS Resolution for {host}:{port}[/bold]")
+    try:
+        # Try to resolve both IPv4 and IPv6
+        addr_info = socket.getaddrinfo(host, port, proto=socket.IPPROTO_TCP)
+        seen_ips = set()
+        for family, type, proto, canonname, sockaddr in addr_info:
+            ip = sockaddr[0]
+            if ip in seen_ips: continue
+            seen_ips.add(ip)
+            family_str = "IPv6" if family == socket.AF_INET6 else "IPv4"
+            console.print(f"  - {family_str}: {ip}")
+    except Exception as e:
+        console.print(f"[red]DNS Resolution Failed: {e}[/red]")
+        # Don't return, try HTTP anyway as it might use a proxy or different path
+
+    # 3. HTTP Request
+    console.print("\n[bold]HTTP Request Check[/bold]")
+    try:
+        # Use a session to simulate actual client
+        s = requests.Session()
+        console.print(f"  GET {api_url} ... ", end="")
+        start_time = time.time()
+        resp = s.get(api_url, timeout=10)
+        elapsed = (time.time() - start_time) * 1000
+        
+        status_style = "green" if resp.status_code < 400 else "yellow"
+        console.print(f"[{status_style}]{resp.status_code} {resp.reason}[/{status_style}] ({elapsed:.1f}ms)")
+        console.print(f"  Server: {resp.headers.get('Server', 'Unknown')}")
+        
+    except Exception as e:
+        console.print(f"[red]FAILED: {e}[/red]")
+        
+    console.print("\n[bold]Diagnosis Complete.[/bold]")
+
 if __name__ == "__main__":
     app()
