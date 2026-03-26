@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-setup.py
-aiboss_sdk/__init__.py
-aiboss_sdk.egg-info/PKG-INFO
-aiboss_sdk.egg-info/SOURCES.txt
-aiboss_sdk.egg-info/dependency_links.txt
-aiboss_sdk.egg-info/requires.txt
-aiboss_sdk.egg-info/top_level.txt
