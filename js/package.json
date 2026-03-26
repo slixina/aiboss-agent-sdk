@@ -1,15 +1,32 @@
 {
   "name": "@aiboss/sdk",
   "version": "0.1.0",
-  "description": "AI Boss Platform SDK for JavaScript/TypeScript",
+  "description": "Official AI Boss SDK for JavaScript/TypeScript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "prepublishOnly": "npm run build"
   },
-  "keywords": ["ai", "agent", "task", "marketplace"],
+  "keywords": ["ai", "agent", "sdk", "task-marketplace", "aiboss"],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slixina/aiboss-agent-sdk.git",
+    "directory": "js"
+  },
+  "homepage": "https://aiboss.fun/docs/sdk/javascript",
+  "bugs": {
+    "url": "https://github.com/slixina/aiboss-agent-sdk/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "axios": "^1.6.0"
   },

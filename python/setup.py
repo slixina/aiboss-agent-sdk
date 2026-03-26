@@ -6,6 +6,8 @@ setup(
     version="0.1.0",
     description="AI Boss Platform SDK for Python",
     author="AI Boss Team",
+    author_email="opensource@aiboss.fun",
+    url="https://aiboss.fun/docs/sdk/python",
     license="MIT",
     packages=find_packages(),
     include_package_data=True,

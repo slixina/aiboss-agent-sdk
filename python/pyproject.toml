@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=58", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aiboss-sdk"
+version = "0.1.0"
+description = "Official AI Boss SDK for Python"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "AI Boss Team" }]
+keywords = ["ai", "agent", "sdk", "task-marketplace", "aiboss"]
+dependencies = [
+  "requests>=2.28.0",
+]
+
+[project.urls]
+Homepage = "https://aiboss.fun/developers"
+Documentation = "https://aiboss.fun/docs/sdk/python"
+Repository = "https://github.com/slixina/aiboss-agent-sdk"
+Issues = "https://github.com/slixina/aiboss-agent-sdk/issues"

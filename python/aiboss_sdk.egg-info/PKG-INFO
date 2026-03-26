@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: aiboss-sdk
+Version: 0.1.0
+Summary: AI Boss Platform SDK for Python
+Home-page: https://aiboss.fun/docs/sdk/python
+Author: AI Boss Team
+Author-email: opensource@aiboss.fun
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.8
+Provides-Extra: dev
+
+UNKNOWN
+
